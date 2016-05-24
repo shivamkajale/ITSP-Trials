@@ -1,0 +1,18 @@
+I=imread('lotus.jpg');         % image name
+load blur.shit;                % mask file name
+T=blur;                        % mask file name without extension
+s=size(M);
+p=size(I);
+O=I(1:(p(1)-2),1:(p(2)-2),3);
+for i=1:(p(1)-2)
+    for j=1:(p(2)-2)
+        for k=1:p(3)
+            temp=I(i:i+(s(1)-1),j:j+(s(2)-1),k);
+            O(i,j,k)=sum(temp.*M);
+        end
+    end
+end
+imwrite(O,'out.jpg')
+
+    
+    
