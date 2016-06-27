@@ -289,16 +289,22 @@ def performAction( yp, rc, bc, action, drag, perform):
 
 def func():
 	global root1
+	root1.title("MANIMOUSE")
+	'''bckg = tk.PhotoImage(file="yo1.gif")
+	wlabel = tk.Label(root1,image=bckg)
+	wlabel.pack(pady=1)
+	'''
+	root1.geometry('{}x{}'.format(1920,780))
+	w=tk.Label(root1,text='	      YOU HAVE ENTERED CALIBRATION MODE\n\n'
+	' USE TRACKBARS TO CALIBRATE AND PRESS (SPACEBAR) WHEN DONE\n\n'
+	'	       PRESS (D) TO USE DEFAULT SETTINGS',font=('Helvetica',24),justify=tk.LEFT,padx=40)
+	w.pack(pady=100)
 	
-	w=tk.Label(root1,text='	You have entered calibration mode.\n'
-	' Use the trackbars to calibrate and press SPACE when done.\n'
-	'	Press D to use the default settings.',justify=tk.LEFT,padx=20)
-	w.pack()
-	startbttn=tk.Button(root1,text="START", width=25, command=start_callib)
-	startbttn.pack()
+	#start= tk. PhotoImage(file="start.gif")
+	startbttn=tk.Button(root1,text="START",font=('Helvetica',22),command=start_callib)
+	startbttn.pack(pady=50,side=tk.BOTTOM)
 	root.destroy()
 	root1.mainloop()
-	root1.destroy()
 	return 0
 
 def start_callib():
@@ -324,13 +330,27 @@ print '	Press D to use the default settings.'
 print '**********************************************************************'
 """
 
+#func_return = False
+#start_callib_return = False
+
 root=tk.Tk()
 root.title("MANIMOUSE")
+logo1 = tk.PhotoImage(file="yo.gif")
+#w2 = tk.Label(root,image=logo1)
+#w2.pack(side=tk.TOP)
+#logo2 = tk.PhotoImage(file="Electrometheus.gif")
+w = tk.Label(root, image=logo1)
+w.pack(pady=1)
+run = tk.PhotoImage(file='run.gif')
+button = tk.Button(root, image=run, command=func)
+button.pack(side=tk.BOTTOM,pady=10)
+root.geometry('{}x{}'.format(1920, 780))
+#root.resizable(width=False, height=False)
 root1=tk.Tk()
-root1.title("sample1")
-button = tk.Button(root, text='RUN', width=35, command=func)
-button.pack()
-root.mainloop()
+root.mainloop() 
+
+
+
 
 print '**********************************************************************'
 print '	Press P to turn ON and OFF mouse simulation.'
