@@ -4,6 +4,7 @@ import numpy as np
 import pyautogui
 import time
 import Tkinter as tk
+import webbrowser as wb
 
 # Some global variables or others that need prior intialization are initalized here
 
@@ -28,7 +29,7 @@ kernel = np.ones((7,7),np.uint8)
 perform = False
 showCentroid = False
 
-cv2.namedWindow('Frame')
+
 
 # 'nothing' function is useful when creating trackbars
 # It is passed as last arguement in the cv2.createTrackbar() function
@@ -285,8 +286,6 @@ def performAction( yp, rc, bc, action, drag, perform):
 			pyautogui.mouseUp()
 				
 		
-
-
 def func():
 	global root1
 	root1.title("MANIMOUSE")
@@ -333,22 +332,52 @@ print '**********************************************************************'
 #func_return = False
 #start_callib_return = False
 
-root=tk.Tk()
-root.title("MANIMOUSE")
-logo1 = tk.PhotoImage(file="yo.gif")
-#w2 = tk.Label(root,image=logo1)
-#w2.pack(side=tk.TOP)
-#logo2 = tk.PhotoImage(file="Electrometheus.gif")
-w = tk.Label(root, image=logo1)
-w.pack(pady=1)
-run = tk.PhotoImage(file='run.gif')
-button = tk.Button(root, image=run, command=func)
-button.pack(side=tk.BOTTOM,pady=10)
+def OpenDoc():
+	wb.open_new('https://docs.google.com/document/d/1Wi6vTs4UpHZIsDLA-S_BWiwHK9TuY-w4TFQfpT5UlFw/edit?usp=sharing')
+	return 0
+
+def OpenCredits():
+	wb.open_new('https://drive.google.com/open?id=0BzMlLgwt8GfyZlNiaUdSTXFJLWs')
+	return 0
+
+def OpenHelp():
+	wb.open_new('https://drive.google.com/open?id=0BzMlLgwt8GfyTW9tRnJTWUhWaUU')
+	return 0
+
+root = tk.Tk()
+root.title("Test")
+
+#Background Pic
+bgi = tk.PhotoImage(file = 'yo.gif')
+w = tk.Label(root,image = bgi)
+w.grid(row = 0, column = 0, rowspan = 10, columnspan = 5)
+
+#Run Button
+run = tk.PhotoImage(file = 'run.gif')
+runButton = tk.Button(root,image = run,command = func)
+runButton.grid(row = 10, column = 2, pady = 8)
+
+#Credits Button
+Credits = tk.PhotoImage(file = 'Credits.gif')
+CreditsBtn = tk.Button(root,image = Credits, command = OpenCredits)
+CreditsBtn.grid(row = 10, column = 1, pady = 8)
+
+#Doc Button
+Doc = tk.PhotoImage(file = 'Documentation.gif')
+DocBtn = tk.Button(root, image = Doc, command = OpenDoc)
+DocBtn.grid(row = 10, column = 3 , pady = 8)
+
+#Help Button
+help = tk.PhotoImage(file = 'Help.gif')
+hBtn = tk.Button(root, image = help, command = OpenHelp)
+hBtn.grid(row = 10, column = 0)
+
 root.geometry('{}x{}'.format(1920, 780))
 #root.resizable(width=False, height=False)
 root1=tk.Tk()
 root.mainloop() 
 
+cv2.namedWindow('Frame')
 
 
 
